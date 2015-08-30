@@ -1,7 +1,6 @@
 #!/bin/bash
-# Dumb utility script to keep hubot running on Slack.
-# Run this in a screen session!!
 SLACK_TOKEN=$1
+WUNDERGROUND_KEY=$2
 
 while true; do
   echo "Pulling latest bot image"
@@ -14,7 +13,13 @@ while true; do
   done
 
   echo "Starting bot"
-  docker run --rm --name="mss-hubot" --net=host -e REDISTOGO_URL=redis://localhost:6379 -e HUBOT_SLACK_TOKEN=$SLACK_TOKEN nparry/mss-hubot -a slack -d
+  docker run \
+  --rm --name="mss-hubot" \
+  --net=host \
+  -e REDISTOGO_URL=redis://localhost:6379 \
+  -e HUBOT_SLACK_TOKEN=$SLACK_TOKEN \
+  -e HUBOT_WUNDERGROUND_API_KEY=$WUNDERGROUND_KEY \
+  nparry/mss-hubot -a slack -d
 
   echo "Bot has exited"
   sleep 2
