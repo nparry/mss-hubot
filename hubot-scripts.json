@@ -7,7 +7,6 @@
   "decide.coffee",
   "google.coffee",
   "ip.coffee",
-  "karma.coffee",
   "wunderground.coffee"
 ]
 
