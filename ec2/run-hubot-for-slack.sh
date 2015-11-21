@@ -1,17 +1,18 @@
 #!/bin/bash
-SLACK_TOKEN=$1
-WUNDERGROUND_KEY=$2
+BOT_ID=$1
+SLACK_TOKEN=$2
+WUNDERGROUND_KEY=$3
 
 echo "Starting Redis"
 docker pull redis
 docker run \
   --detach \
-  --name=mss-hubot-brain \
+  --name=${BOT_ID}-hubot-brain \
   redis
 
 while true; do
   echo "Pulling latest bot image"
-  docker pull nparry/mss-hubot
+  docker pull nparry/${BOT_ID}-hubot
 
   echo "Cleaning up obsolete images"
   docker images | grep none | awk '{ print $3 }' | while read IMAGE; do
@@ -22,8 +23,8 @@ while true; do
   echo "Starting bot"
   docker run \
     --rm \
-    --name=mss-hubot \
-    --link mss-hubot-brain:brain \
+    --name=${BOT_ID}-hubot \
+    --link ${BOT_ID}-hubot-brain:brain \
     -e REDISTOGO_URL=redis://brain:6379 \
     -e HUBOT_SLACK_TOKEN=$SLACK_TOKEN \
     -e HUBOT_WUNDERGROUND_API_KEY=$WUNDERGROUND_KEY \
