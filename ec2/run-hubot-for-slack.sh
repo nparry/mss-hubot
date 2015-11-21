@@ -1,7 +1,12 @@
 #!/bin/bash
 BOT_ID=$1
+[ -z $BOT_ID ] && echo "Please provide BOT_ID" && exit 1
+
 SLACK_TOKEN=$2
+[ -z $SLACK_TOKEN ] && echo "Please provide SLACK_TOKEN" && exit 1
+
 WUNDERGROUND_KEY=$3
+[ -z $WUNDERGROUND_KEY ] && echo "Please provide WUNDERGROUND_KEY" && exit 1
 
 echo "Starting Redis"
 docker pull redis
