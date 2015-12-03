@@ -1,7 +1,6 @@
 [
   "ackbar.coffee",
   "applause.coffee",
-  "auto-stache.coffee",
   "base64.coffee",
   "coin.coffee",
   "decide.coffee",
