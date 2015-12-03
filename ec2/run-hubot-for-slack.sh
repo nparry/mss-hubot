@@ -17,7 +17,7 @@ docker run \
 
 while true; do
   echo "Pulling latest bot image"
-  docker pull nparry/${BOT_ID}-hubot
+  docker pull nparry/mss-hubot
 
   echo "Cleaning up obsolete images"
   docker images | grep none | awk '{ print $3 }' | while read IMAGE; do
