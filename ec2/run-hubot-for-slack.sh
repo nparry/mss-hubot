@@ -11,7 +11,7 @@ WUNDERGROUND_KEY=$3
 CSE_ID=$4
 [ -z $CSE_ID ] && echo "Please provide CSE_ID" && exit 1
 
-CSE_KEY=$4
+CSE_KEY=$5
 [ -z $CSE_KEY ] && echo "Please provide CSE_KEY" && exit 1
 
 echo "Starting Redis"
