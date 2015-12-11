@@ -8,6 +8,12 @@ SLACK_TOKEN=$2
 WUNDERGROUND_KEY=$3
 [ -z $WUNDERGROUND_KEY ] && echo "Please provide WUNDERGROUND_KEY" && exit 1
 
+CSE_ID=$4
+[ -z $CSE_ID ] && echo "Please provide CSE_ID" && exit 1
+
+CSE_KEY=$4
+[ -z $CSE_KEY ] && echo "Please provide CSE_KEY" && exit 1
+
 echo "Starting Redis"
 docker pull redis
 docker run \
@@ -33,6 +39,8 @@ while true; do
     -e REDISTOGO_URL=redis://brain:6379 \
     -e HUBOT_SLACK_TOKEN=$SLACK_TOKEN \
     -e HUBOT_WUNDERGROUND_API_KEY=$WUNDERGROUND_KEY \
+    -e HUBOT_GOOGLE_CSE_ID=$CSE_ID \
+    -e HUBOT_GOOGLE_CSE_KEY=$CSE_KEY \
     nparry/mss-hubot -a slack
 
   echo "Bot has exited"

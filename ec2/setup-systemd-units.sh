@@ -6,11 +6,15 @@ for ARG in "$@"; do
   NAME=$(cut -d' ' -f1 <<<"$ARG")
   SLACK_TOKEN=$(cut -d' ' -f2 <<<"$ARG")
   WUNDERGROUND_KEY=$(cut -d' ' -f3 <<<"$ARG")
+  CSE_ID=$(cut -d' ' -f4 <<<"$ARG")
+  CSE_KEY=$(cut -d' ' -f5 <<<"$ARG")
 
   echo "Settings:"
   echo $NAME
   echo $SLACK_TOKEN
   echo $WUNDERGROUND_KEY
+  echo $CSE_ID
+  echo $CSE_KEY
 
   echo "Creating systemd service for $NAME"
   cat > /etc/systemd/system/hubot-$NAME.service <<END_OF_UNIT
@@ -19,7 +23,7 @@ for ARG in "$@"; do
 
   [Service]
   User=core
-  ExecStart=/home/core/hubot/ec2/run-hubot-for-slack.sh $NAME $SLACK_TOKEN $WUNDERGROUND_KEY
+  ExecStart=/home/core/hubot/ec2/run-hubot-for-slack.sh $NAME $SLACK_TOKEN $WUNDERGROUND_KEY $CSE_ID $CSE_KEY
 END_OF_UNIT
   systemctl start hubot-$NAME.service
 done
