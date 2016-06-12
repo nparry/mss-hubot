@@ -38,6 +38,7 @@ while true; do
     --link ${BOT_ID}-hubot-brain:brain \
     -e REDISTOGO_URL=redis://brain:6379 \
     -e HUBOT_SLACK_TOKEN=$SLACK_TOKEN \
+    -e HUBOT_SLACK_EXIT_ON_DISCONNECT=true \
     -e HUBOT_WUNDERGROUND_API_KEY=$WUNDERGROUND_KEY \
     -e HUBOT_GOOGLE_CSE_ID=$CSE_ID \
     -e HUBOT_GOOGLE_CSE_KEY=$CSE_KEY \
