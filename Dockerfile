@@ -1,4 +1,4 @@
-FROM node:0.12
+FROM node:7
 
 RUN adduser --system --shell /bin/bash hubot
 RUN mkdir -p /usr/local/lib/hubot
